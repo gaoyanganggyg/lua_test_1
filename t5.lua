@@ -48,5 +48,25 @@ local function new(l)
     return set
 end
 
-local s1 = new{10, 20, 30, 50}
+local function add(a, b)
+    local res = new{}
+    for k in pairs(a) do  res[k] = true end
+    for k in pairs(b) do  res[k] = true end
+    return res
+end
 
+local s1 = new{10, 20, 30, 50 }
+local s2 = new{30, 1}
+print(getmetatable(s1))
+print(getmetatable(s2))
+
+mt.__add = add
+
+local s3 = s1 + s2
+for k in pairs(s3) do
+    print(k)
+end
+
+for n in pairs(_G) do
+    print(n)
+end
